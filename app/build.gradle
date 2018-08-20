@@ -13,8 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
 
 apply plugin: 'com.android.application'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -24,9 +47,17 @@ apply from: 'app-config.gradle'
 
 def STRING = "String"
 
+flutter {
+    source '../..'
+}
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
+
+    dataBinding {
+        enabled = false
+    }
 
     defaultConfig {
         applicationId "com.futurice.freesound"
@@ -57,6 +88,8 @@ android {
             }
         }
     }
+
+
 
     signingConfigs {
         debug {
