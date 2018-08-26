@@ -16,11 +16,13 @@
 
 package com.futurice.freesound.feature.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import butterknife.ButterKnife.findById
+import com.futurice.freesound.MyFlutterActivity
 import com.futurice.freesound.R
 import com.futurice.freesound.app.FreesoundApplication
 import com.futurice.freesound.core.BindingBaseActivity
@@ -60,7 +62,7 @@ class HomeActivity : BindingBaseActivity<HomeActivityComponent>() {
         return when (item.itemId) {
             R.id.action_about  -> true
             R.id.action_search -> {
-                homeViewModel.openSearch()
+                this.startActivity(Intent(this, MyFlutterActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
