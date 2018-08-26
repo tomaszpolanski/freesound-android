@@ -47,17 +47,25 @@ allprojects {
     }
 }
 
-
+// Where Flutter should have build directory
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
+// All subprojects need to be dependent of the main module
 subprojects {
     project.evaluationDependsOn(':app')
 }
 
+// Flutter cleanup task
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+// TODO This is required only once????? After that I need to comment it out?
+// configure(project(':app')) {
+//     print (task)
+//     tasks.preBuild.dependsOn flutterBuildX86Jar
+// }
 
 apply plugin: "org.sonarqube"

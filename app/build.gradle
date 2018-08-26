@@ -37,6 +37,7 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+// Applying flutter.gradle has to be after com.android.application pluggin
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -47,6 +48,7 @@ apply from: 'app-config.gradle'
 
 def STRING = "String"
 
+// Path to flutter folder
 flutter {
     source '../..'
 }
