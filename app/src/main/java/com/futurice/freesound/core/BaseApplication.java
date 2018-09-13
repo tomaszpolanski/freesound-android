@@ -22,12 +22,14 @@ import android.app.Application;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 
+import io.flutter.app.FlutterApplication;
+
 /**
  * A base Application which provides a dependency injection mechanism.
  *
  * @param <T> The DI component class
  */
-public abstract class BaseApplication<T> extends Application implements Injector<T> {
+public abstract class BaseApplication<T> extends FlutterApplication implements Injector<T> {
 
     private T component;
 

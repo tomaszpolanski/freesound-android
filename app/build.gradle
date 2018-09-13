@@ -156,6 +156,7 @@ ext {
 dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$dependencyVersions.kotlin"
+    implementation project(':flutter')
 
     // Android Support
     implementation "com.android.support:support-v4:$dependencyVersions.androidSupport"

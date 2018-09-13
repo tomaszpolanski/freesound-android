@@ -15,3 +15,10 @@
  */
 
 include ':app'
+// Still gradlew flutterBuildX86Jar is needed
+// flutter attach must be run from the flutter project
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'freesound_attach/.android/include_flutter.groovy' // freesound_attach is my Flutter project folder
+))
